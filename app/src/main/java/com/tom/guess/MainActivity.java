@@ -11,15 +11,26 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
+    EditText number;
+    TextView speak;
+    TextView Please;
+    int num;
+    Random random = new Random();
+    int secret = random.nextInt(10)+1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        number = findViewById(R.id.number);
+        speak = findViewById(R.id.speak);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,7 +41,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void guess (View view){
+        num = Integer.parseInt(number.getText().toString());
+        if (secret > num){
+            speak.setText("bigger");
+        }else if(secret < num) {
+              speak.setText("smaller");
+        }else if(secret == num){
+             speak.setText("right");
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
