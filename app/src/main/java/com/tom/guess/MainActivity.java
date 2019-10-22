@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void guess (View view){
         num = Integer.parseInt(number.getText().toString());
         if (secret > num){
